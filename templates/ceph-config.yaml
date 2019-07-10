@@ -1,0 +1,40 @@
+parameter_defaults:
+  GlanceBackend: rbd
+  #CinderBackupBackend: ceph
+  CephPoolDefaultSize: 3
+  CephPoolDefaultPgNum: 1024
+  CephConfigOverrides:
+    mon_max_pg_per_osd: 3072
+  CephAnsibleExtraConfig:
+    osd_recovery_op_priority: 3
+    osd_recovery_max_active: 3
+    osd_max_backfills: 1
+    ceph_mon_docker_memory_limit: 3g
+    ceph_mon_docker_cpu_limit: 1
+    ceph_osd_docker_memory_limit: 5g
+    ceph_osd_docker_cpu_limit: 1
+    osd_scenario: non-collocated    
+    osd_objectstore: filestore
+  CephAnsiblePlaybookVerbosity: 0
+  CephAnsibleEnvironmentVariables:
+    ANSIBLE_SSH_RETRIES: '6'
+  CephAnsibleDisksConfig:
+    journal_size: 5120
+    devices:
+      - /dev/sda
+      - /dev/sdb
+      - /dev/sdc
+      - /dev/sdd
+      - /dev/sde
+      - /dev/sdf
+      - /dev/sdg
+      - /dev/sdh
+    dedicated_devices:
+      - /dev/sdi
+      - /dev/sdi
+      - /dev/sdi
+      - /dev/sdi
+      - /dev/sdj
+      - /dev/sdj
+      - /dev/sdj
+      - /dev/sdj

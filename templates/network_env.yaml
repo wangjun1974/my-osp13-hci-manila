@@ -1,0 +1,86 @@
+resource_registry:
+  #OS::TripleO::BlockStorage::Net::SoftwareConfig: nic-configs/cinder-storage.yaml
+  #OS::TripleO::Compute::Net::SoftwareConfig: nic-configs/compute.yaml
+  OS::TripleO::ComputeHCI::Net::SoftwareConfig: nic-configs/osdcompute.yaml
+  OS::TripleO::Controller::Net::SoftwareConfig: nic-configs/controller.yaml
+  #OS::TripleO::ObjectStorage::Net::SoftwareConfig: nic-configs/swift-storage.yaml
+  #OS::TripleO::CephStorage::Net::SoftwareConfig: nic-configs/ceph-storage.yaml
+  OS::TripleO::NodeUserData: /home/stack/templates/os-net-config-mappings.yaml
+
+parameter_defaults:
+  # Set to "br-ex" if using floating IPs on native VLAN on bridge br-ex
+  NeutronExternalNetworkBridge: "''"
+
+  # Internal API used for private OpenStack Traffic
+  InternalApiNetCidr: 10.22.132.0/24
+  InternalApiAllocationPools: [{'start': '10.22.132.11', 'end': '10.22.132.200'}]
+  InternalApiNetworkVlanID: 4041
+
+  # Tenant Network Traffic - will be used for VXLAN over VLAN
+  TenantNetCidr: 10.22.133.0/24
+  TenantAllocationPools: [{'start': '10.22.133.11', 'end': '10.22.133.200'}]
+  TenantNetworkVlanID: 4042
+
+  # Public Storage Access - e.g. Nova/Glance <--> Ceph
+  StorageNetCidr: 10.22.135.0/24
+  StorageAllocationPools: [{'start': '10.22.135.11', 'end': '10.22.135.200'}]
+  StorageNetworkVlanID: 4044  
+
+  # Private Storage Access - i.e. Ceph background cluster/replication
+  StorageMgmtNetCidr: 10.22.136.0/24
+  StorageMgmtAllocationPools: [{'start': '10.22.136.11', 'end': '10.22.136.200'}]
+  StorageMgmtNetworkVlanID: 4045
+
+  # Public Storage Nfs Access - i.e. Manila Cephfs via Nfs
+  StorageNFSManilaNetCidr: 10.22.138.0/24
+  StorageNFSManilaAllocationPools: [{'start': '10.22.138.11', 'end': '10.22.138.30'}]
+  StorageNFSManilaNetworkVlanID: 4047
+
+  # External Networking Access - Public API Access
+  ExternalNetCidr: 172.22.130.0/24
+  ExternalAllocationPools: [{'start': '172.22.130.11', 'end': '172.22.130.30'}]
+  ExternalNetworkVlanID: 4046
+
+  # Set to the router gateway on the external network
+  ExternalInterfaceDefaultRoute: 172.22.130.254
+
+  # Gateway router for the provisioning network (or Undercloud IP)
+  ControlPlaneSubnetCidr: "24"
+  ControlPlaneDefaultRoute: 10.22.131.1
+  # The IP address of the EC2 metadata server. Generally the IP of the Undercloud
+  EC2MetadataIp: 10.22.131.1
+  DnsServers: ["10.22.131.1"]
+
+  NeutronNetworkType: 'vxlan,vlan'
+  NeutronTunnelTypes: 'vxlan'
+  NeutronNetworkVLANRanges: 'datacentre:4046:4050'
+  NeutronBridgeMappings: 'datacentre:br-ex'
+  NeutronEnableIsolatedMetadata: True
+
+#  NetConfigDataLookup:
+#    node1:
+#      nic1: "52:54:00:48:3e:65"
+#      nic2: "52:54:00:d6:05:f2"
+#      nic3: "52:54:00:66:84:d1"
+#      nic4: "52:54:00:83:0e:f7"
+#      nic5: "52:54:00:06:5b:c0"
+#      nic6: "52:54:00:04:04:01"
+#      nic7: "52:54:00:04:04:02"
+#    node2:
+#      nic1: "52:54:00:84:b0:80"
+#      nic2: "52:54:00:ff:fd:ac"
+#      nic3: "52:54:00:38:34:af"
+#      nic4: "52:54:00:22:86:d0"
+#      nic5: "52:54:00:5a:57:cd"
+
+  # SchedulerHints
+  ControllerSchedulerHints:
+    'capabilities:node': 'controller-%index%'
+  NovaComputeSchedulerHints:
+    'capabilities:node': 'compute-%index%'
+  CephStorageSchedulerHints:
+    'capabilities:node': 'cephstorage-%index%'
+  ComputeHCISchedulerHints:
+    'capabilities:node': 'osdcompute-%index%'
+  
+  NetworkDeploymentActions: ['CREATE','UPDATE']

@@ -1,0 +1,94 @@
+{
+  "nodes": 
+  [
+    {
+      "name": "controller0",
+      "pm_user": "root",
+      "pm_addr": "172.22.128.2",
+      "pm_password": "0J$ZH7viEl",
+      "pm_type": "pxe_ipmitool",
+      "mac": [ "6C:92:BF:48:AE:AF" ],
+      "capabilities": "node:controller-0,boot_option:local"
+    },
+    
+    {
+      "name": "controller1",
+      "pm_user": "root",
+      "pm_addr": "172.22.128.3",
+      "pm_password": "0J$ZH7viEl",
+      "pm_type": "pxe_ipmitool",
+      "mac": [ "6C:92:BF:48:B0:81" ],
+      "capabilities": "node:controller-1,boot_option:local"
+    },    
+
+    {
+      "name": "controller2",
+      "pm_user": "root",
+      "pm_addr": "172.22.128.4",
+      "pm_password": "0J$ZH7viEl",
+      "pm_type": "pxe_ipmitool",
+      "mac": [ "6C:92:BF:48:AF:67" ],
+      "capabilities": "node:controller-2,boot_option:local"
+    },
+    
+    {
+      "name": "osdcompute0",
+      "pm_user": "root",
+      "pm_addr": "172.22.128.5",
+      "pm_password": "0J$ZH7viEl",
+      "pm_type": "pxe_ipmitool",
+      "mac": [ "6C:92:BF:48:DA:2B" ],
+      "capabilities": "node:osdcompute-0,boot_option:local"
+    },
+
+    {
+      "name": "osdcompute1",
+      "pm_user": "root",
+      "pm_addr": "172.22.128.6",
+      "pm_password": "0J$ZH7viEl",
+      "pm_type": "pxe_ipmitool",
+      "mac": [ "6C:92:BF:48:DC:69" ],
+      "capabilities": "node:osdcompute-1,boot_option:local"
+    },
+    
+    {
+      "name": "osdcompute2",
+      "pm_user": "root",
+      "pm_addr": "172.22.128.7",
+      "pm_password": "0J$ZH7viEl",
+      "pm_type": "pxe_ipmitool",
+      "mac": [ "6C:92:BF:48:DC:63" ],
+      "capabilities": "node:osdcompute-2,boot_option:local"
+    },
+    
+    {
+      "name": "osdcompute3",
+      "pm_user": "root",
+      "pm_addr": "172.22.128.8",
+      "pm_password": "0J$ZH7viEl",
+      "pm_type": "pxe_ipmitool",
+      "mac": [ "6C:92:BF:48:DD:D9" ],
+      "capabilities": "node:osdcompute-3,boot_option:local"
+    },
+    
+    {
+      "name": "osdcompute4",
+      "pm_user": "root",
+      "pm_addr": "172.22.128.9",
+      "pm_password": "0J$ZH7viEl",
+      "pm_type": "pxe_ipmitool",
+      "mac": [ "6C:92:BF:48:D8:D5" ],
+      "capabilities": "node:osdcompute-4,boot_option:local"
+    },
+    
+    {
+      "name": "osdcompute5",
+      "pm_user": "root",
+      "pm_addr": "172.22.128.10",
+      "pm_password": "0J$ZH7viEl",
+      "pm_type": "pxe_ipmitool",
+      "mac": [ "6C:92:BF:48:DD:6D" ],
+      "capabilities": "node:osdcompute-5,boot_option:local"
+    }    
+  ]
+}

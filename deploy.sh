@@ -1,0 +1,15 @@
+openstack --debug overcloud deploy --templates \
+  -r /home/stack/templates/roles_data.yaml \
+  -n /home/stack/templates/network_data_ganesha.yaml \
+  -p /usr/share/openstack-tripleo-heat-templates/plan-samples/plan-environment-derived-params.yaml \
+  -e /home/stack/templates/node-info.yaml \
+  -e /home/stack/templates/overcloud_images.yaml \
+  -e /usr/share/openstack-tripleo-heat-templates/environments/network-isolation.yaml \
+  -e /home/stack/templates/network_env.yaml \
+  -e /home/stack/templates/ports.yaml \
+  -e /usr/share/openstack-tripleo-heat-templates/environments/ceph-ansible/ceph-ansible.yaml \
+  -e /usr/share/openstack-tripleo-heat-templates/environments/ceph-ansible/ceph-mds.yaml  \
+  -e /usr/share/openstack-tripleo-heat-templates/environments/manila-cephfsganesha-config.yaml \
+  -e /home/stack/templates/ceph-config.yaml \
+  --ntp-server 10.22.131.1 \
+  --log-file /tmp/overcloud_deploy_`date +%Y%m%d_%H%M%S`.log

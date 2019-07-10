@@ -1,0 +1,15 @@
+parameter_defaults:                                                                                                           
+  OvercloudControllerFlavor: control                                                                                          
+  OvercloudComputeFlavor: compute                                                                                             
+  OvercloudCephStorageFlavor: ceph-storage                                                                                    
+  OvercloudComputeHCIFlavor: osdcompute                                                                                        
+  ControllerCount: 3                                                                                                          
+  ComputeCount: 0                                                                                                             
+  ComputeHCICount: 6                                                                                                          
+  CephStorageCount: 0
+
+  ComputeHCIParameters:
+    NovaReservedHostMemory: 45056
+  ComputeHCIExtraConfig:
+    nova::cpu_allocation_ratio: 4
+    nova::ram_allocation_ratio: 2
